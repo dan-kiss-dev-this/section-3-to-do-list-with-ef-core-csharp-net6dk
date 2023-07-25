@@ -25,6 +25,22 @@ namespace ToDoList.Controllers
             List<Item> model = _db.Items.ToList();
             return View(model);
         }
+
+        // we use create here as it is an html helper method
+        public ActionResult Create()
+        {
+            return View();
+        }
+
+        // not typing out ("/items/create")
+        [HttpPost]
+        public ActionResult Create(Item item)
+        {
+            // Add is a DBSet method we run on our DBSet property of ToDoListContext while SaveChange() is a DbContext method that we run on the ToDoListContext itself
+            _db.Items.Add(item);
+            _db.SaveChanges();
+            return RedirectToAction("Index");
+        }
     }
 }
 
