@@ -61,3 +61,11 @@ Follow the instructions in the LearnHowToProgram.com lesson ["Creating a Test Da
 - https://www.learnhowtoprogram.com/c-and-net/database-basics/establishing-a-one-to-many-relationship-with-navigation-properties
 - https://www.learnhowtoprogram.com/c-and-net/database-basics/using-viewbag
 - https://www.learnhowtoprogram.com/c-and-net/database-basics/create-and-update-with-a-one-to-many-relationship
+
+Add appsettings.json into ToDoList folder with below settings
+{
+    "ConnectionStrings": {
+        "DefaultConnection": "Server=localhost;Port=3306;database=to_do_list_with_ef_core;uid=root;pwd=epicodus;",
+        "TestConnection": "Server=localhost;Port=3306;database=to_do_list_with_ef_core;uid=root;pwd=epicodus;"
+    }
+}
