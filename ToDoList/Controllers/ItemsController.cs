@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using ToDoList.Models;
 using System.Collections.Generic;
 using System.Linq;
+using Microsoft.EntityFrameworkCore;
 
 namespace ToDoList.Controllers
 {
@@ -22,7 +23,10 @@ namespace ToDoList.Controllers
             // Once there, it looks for an object named Items. This is the DbSet we declared in ToDoListContext.cs
             //             LINQ turns this DbSet into a list using the ToList() method, which comes from the System.Linq namespace.
             // The whole expression _db.Items.ToList() is what creates the model we'll use for the Index view.
-            List<Item> model = _db.Items.ToList();
+            List<Item> model = _db.Items
+            .Include(item => item.Category)
+            .ToList();
+            // List<Item> model = _db.Items.ToList();
             return View(model);
         }
 
@@ -62,7 +66,7 @@ namespace ToDoList.Controllers
             _db.SaveChanges();
             return RedirectToAction("Index");
         }
-        public ActionResult Delete (int id)
+        public ActionResult Delete(int id)
         {
             Item thisItem = _db.Items.FirstOrDefault(item => item.ItemId == id);
             return View(thisItem);
