@@ -24,10 +24,11 @@ namespace ToDoList.Controllers
             //             LINQ turns this DbSet into a list using the ToList() method, which comes from the System.Linq namespace.
             // The whole expression _db.Items.ToList() is what creates the model we'll use for the Index view.
             List<Item> model = _db.Items
-            .Include(item => item.Category)
-            .ToList();
-            // List<Item> model = _db.Items.ToList();
+                            .Include(item => item.Category)
+                            .ToList();
+            ViewBag.PageTitle = "View All Items";
             return View(model);
+            // List<Item> model = _db.Items.ToList();
         }
 
         // we use create here as it is an html helper method
